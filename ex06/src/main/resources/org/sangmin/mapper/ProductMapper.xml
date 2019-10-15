@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.sangmin.mapper.ProductMapper">
+	
+	<!-- 게시물 정보 resultMap  -->
+	<resultMap type="org.sangmin.domain.ProductDTO" id="productMap">
+		<id property="pno" column="pno"/>
+		<result property="ptitle" column="ptitle"/>
+		<result property="pcontent" column="pcontent"/>
+		<result property="pwriter" column="pwriter"/>
+		<result property="pprice" column="pprice"/>
+		<result property="regdate" column="regdate"/>
+		<result property="updatedate" column="updatedate"/>
+		<collection property="attachList" resultMap="attachMap">
+		</collection>
+	</resultMap>
+	
+	
+	<!-- 파일 경로 resultMap  -->
+	<resultMap type="org.sangmin.domain.ProductAttachDTO" id="attachMap">
+		<result property="uuid" column="uuid"/>
+		<result property="uploadPath" column="uploadpath"/>
+		<result property="fileName" column="filename"/>
+		<result property="fileType" column="filetype"/>
+		<result property="mainPicture" column="mainpicture"/>
+		<result property="pno" column="pno"/>
+	</resultMap>
+	
+
+
+	<insert id="insert">
+		insert into tbl_product (pno, ptitle, pcontent, pprice, pwriter )
+		values(seq_product.nextval, #{ptitle}, #{pcontent}, #{pprice}, #{pwriter})
+	</insert>
+	
+	<insert id="insertSelectKey">
+	
+		<selectKey keyProperty="pno" order="BEFORE" resultType="long">
+			select seq_product.nextval from dual
+		</selectKey>
+		
+		insert into tbl_product (pno, ptitle, pcontent, pprice, pwriter )
+		values(#{pno}, #{ptitle}, #{pcontent}, #{pprice}, #{pwriter})
+	
+	</insert>
+	
+	<select id="read" resultType="org.sangmin.domain.ProductDTO">
+		select * from tbl_product where pno =  
+		#{pno}
+	</select>
+
+	<select id="getList" resultType="org.sangmin.domain.ProductDTO">
+	
+		<![CDATA[
+		select * from tbl_product,tbl_attach where pno > 0 
+		]]>
+	
+	</select>
+	
+	<select id="getProductList" resultMap="productMap">
+	
+	select
+		mem.pno, ptitle, pcontent, pprice, pwriter, regdate, updatedate, uuid, uploadpath, filename, mainpicture
+	from
+		tbl_product mem LEFT OUTER JOIN tbl_attach attach on mem.pno = attach.pno
+	where attach.mainpicture = '1'
+	
+	</select>
+
+	<delete id="delete">
+		delete tbl_product where pno = #{pno}
+	</delete>
+
+	<update id="update">
+		update tbl_product
+		set ptitle= #{ptitle},
+		pcontent=#{pcontent},
+		pprice=#{pprice},
+		pwriter = #{pwriter},
+		updateDate = sysdate
+		where pno = #{pno}
+	</update>
+	
+	<select id="get" resultType="org.sangmin.domain.ProductDTO">
+	
+		select * from tbl_product where pno=#{pno}
+	</select>	
+
+	<select id="getListWithPaging" resultMap="productMap">
+	
+	<![CDATA[
+		select
+		pno, ptitle, pcontent, pprice, pwriter, regdate, updatedate, uuid, uploadpath, filename, mainpicture
+	from
+	(select /*+INDEX_DESC(tbl_product pk_product)*/ 
+		rownum rn, mem.pno, ptitle, pcontent, pprice, pwriter, regdate, updatedate, uuid, uploadpath, filename, mainpicture from
+		tbl_product mem LEFT OUTER JOIN tbl_attach attach on mem.pno = attach.pno 
+	where (attach.mainpicture = '1') AND (rownum <= #{pageNum} * #{amount}) ) where rn > (#{pageNum} -1) * #{amount} ]]>
+	
+	</select>
+
+	<select id="getTotalCount" resultType="int">
+		select count(*) from tbl_product where pno > 0
+	</select>
+
+
+
+</mapper>

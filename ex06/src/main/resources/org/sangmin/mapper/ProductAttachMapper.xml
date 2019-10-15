@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.sangmin.mapper.ProductAttachMapper">
+
+	<select id="insert">
+		insert into tbl_attach (uuid, uploadpath, filename, filetype, pno, mainpicture )
+		values(#{uuid}, #{uploadPath}, #{fileName}, #{fileType}, #{pno}, #{mainPicture})
+	</select>
+	
+	<select id="findByPno" resultType="org.sangmin.domain.ProductAttachDTO">
+		select * from tbl_attach where pno =  
+		#{pno}
+	</select>
+
+	<delete id="delete">
+		delete tbl_attach where uuid = #{uuid}
+	</delete>
+
+	
+
+</mapper>

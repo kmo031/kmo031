@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.sangmin.mapper.CartMapper">
+
+	<!-- 장바구니정보 resultMap  -->
+	<resultMap type="org.sangmin.domain.CartDTO" id="cartMap">
+		<id property="cno" column="cno"/>
+		<result property="userid" column="userid"/>
+		<result property="pno" column="pno"/>
+		<result property="amount" column="amount"/>
+		<collection property="product" ofType="org.sangmin.domain.ProductDTO">
+			<id property="pno" column="pno" />
+			<result property="ptitle" column="ptitle"/>
+			<result property="pcontent" column="pcontent"/>
+			<result property="pprice" column="pprice"/>
+		
+		<collection property="attachList" ofType="org.sangmin.domain.ProductAttachDTO">
+			<id property="uuid" column="uuid" />
+			<result property="uploadPath" column="uploadpath"/>
+			<result property="fileName" column="filename"/>
+			<result property="fileType" column="filetype"/>
+			<result property="mainPicture" column="mainpicture"/>
+			<result property="pno" column="pno"/>
+		</collection>
+		</collection>
+	</resultMap>
+	
+	<!-- 상품정보  resultMap  -->
+	<resultMap type="org.sangmin.domain.ProductDTO" id="productMap">
+		
+	</resultMap>
+	
+	
+	
+	
+
+	<!-- 장바구니 추가  -->
+	<insert id="insert"> 
+	
+		<selectKey keyProperty="cno" order="BEFORE" resultType="long">
+			select seq_cart.nextval from dual
+		</selectKey>
+  	
+	  	INSERT INTO
+	  	tbl_cart(cno, userid, pno, amount) values (#{cno}, #{userid}, #{pno}, #{amount})
+
+	</insert>
+	
+	<select id="get" resultType="org.sangmin.domain.CartDTO">
+		
+		select * from tbl_cart where pno =#{pno} and userid=#{userid}
+	
+	</select>
+	
+	<update id="update" >
+		update tbl_cart
+		set amount = #{amount},
+		updatedate = sysdate
+		where pno = #{pno} 
+	</update>
+	
+	
+
+	<!-- 장바구니정보와 상품정보 이미지정보 result  -->
+	<select id="getCartList" resultMap="cartMap">
+		
+		select
+			cno,mem.pno,userid,amount,ptitle,pcontent,pprice,uuid,uploadpath,filename,mainpicture
+		from
+			tbl_cart mem 
+			LEFT OUTER JOIN tbl_product product on mem.pno = product.pno
+			LEFT OUTER JOIN tbl_attach attach on product.pno = attach.pno
+		where mem.userid = #{userid} and mainpicture = 1
+	
+	
+	</select>
+	
+	<!-- Cart 삭제  -->
+	<delete id="delete">
+		DELETE FROM tbl_cart WHERE cno = #{cno}
+	</delete>
+
+</mapper>
