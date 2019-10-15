@@ -9,4 +9,9 @@ public interface MemberMapper {
 	public void insert(MemberVO member);
 	
 	public void insertAuth(String userId);
+	
+	public int idCheck(String user_id);
+	
+	
+	
 }

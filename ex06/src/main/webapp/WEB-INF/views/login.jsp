@@ -24,9 +24,9 @@
             <input type="checkbox" value="remember-me"> 기억하기
           </label>
         </div>
-        <button id="btn-Yes" class="btn btn-lg btn-primary btn-block" type="submit">로 그 인</button><br>
+        <button id="btn-rogin" class="btn btn-lg btn-primary btn-block" type="submit">로 그 인</button><br>
         <a href="join"> 
-        	<button id="btn-Yes" class="btn btn-lg btn-success btn-block" type="button">회원가입</button></a>
+        	<button id="btn-join" class="btn btn-lg btn-success btn-block" type="button">회원가입</button></a>
       
         
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />

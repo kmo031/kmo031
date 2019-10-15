@@ -384,10 +384,18 @@ mark,
   color: #6c757d; }
   .blockquote-footer::before {
     content: "\2014\00A0"; }
-
-.img-fluid {
+    
+/*사진크기  */
+.img-fluid {  
+  max-width: 100%;
+  width: 328px;
+  height: 200px; }
+  
+  /*메뉴크기  */
+.img-context  {
   max-width: 100%;
   height: auto; }
+
 
 .img-thumbnail {
   padding: 0.25rem;
@@ -9022,8 +9030,8 @@ h1, h2, h3, h4, h5,
   padding-left: 15px;
   padding-right: 15px;
   background: transparent !important;
-  color: rgba(0, 0, 0, 0.4) !important;
-  font-size: 14px;
+  color: black !important;
+  font-size: 16px;
   border-radius: 0px;
   -webkit-box-shadow: none !important;
   box-shadow: none !important; }

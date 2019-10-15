@@ -7,8 +7,7 @@
       <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
           <div class="col-md-9 ftco-animate text-center">
-          	<p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>Cart</span></p>
-            <h1 class="mb-0 bread">My Cart</h1>
+            <h1 class="mb-0 bread">장바구니</h1>
           </div>
         </div>
       </div>
@@ -24,177 +23,197 @@
 						      <tr class="text-center">
 						        <th>&nbsp;</th>
 						        <th>&nbsp;</th>
-						        <th>Product name</th>
-						        <th>Price</th>
-						        <th>Quantity</th>
-						        <th>Total</th>
+						        <th>상품이름</th>
+						        <th>가격</th>
+						        <th>수량</th>
+						        <th>합계</th>
 						      </tr>
 						    </thead>
-						    <tbody>
-						      <tr class="text-center">
-						        <td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a></td>
-						        
-						        <td class="image-prod"><div class="img" style="background-image:url(/resources/images/product-3.jpg);"></div></td>
-						        
-						        <td class="product-name">
-						        	<h3>Bell Pepper</h3>
-						        	<p>Far far away, behind the word mountains, far from the countries</p>
-						        </td>
-						        
-						        <td class="price">$4.90</td>
-						        
-						        <td class="quantity">
-						        	<div class="input-group mb-3">
-					             	<input type="text" name="quantity" class="quantity form-control input-number" value="1" min="1" max="100">
-					          	</div>
-					          </td>
-						        
-						        <td class="total">$4.90</td>
-						      </tr><!-- END TR-->
-
-						      <tr class="text-center">
-						        <td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a></td>
-						        
-						        <td class="image-prod"><div class="img" style="background-image:url(/resources/images/product-4.jpg);"></div></td>
-						        
-						        <td class="product-name">
-						        	<h3>Bell Pepper</h3>
-						        	<p>Far far away, behind the word mountains, far from the countries</p>
-						        </td>
-						        
-						        <td class="price">$15.70</td>
-						        
-						        <td class="quantity">
-						        	<div class="input-group mb-3">
-					             	<input type="text" name="quantity" class="quantity form-control input-number" value="1" min="1" max="100">
-					          	</div>
-					          </td>
-						        
-						        <td class="total">$15.70</td>
-						      </tr><!-- END TR-->
+						    <tbody class="tbody-group">
+						      <tr>
+						      	 <td align="center" colspan="5">등록된 상품이 없습니다. </td>
+						      </tr>
 						    </tbody>
 						  </table>
 					  </div>
     			</div>
     		</div>
-    		<div class="row justify-content-end">
-    			<div class="col-lg-4 mt-5 cart-wrap ftco-animate">
+    		
+    			
+    			<div class="cart-wrap ftco-animate">
     				<div class="cart-total mb-3">
-    					<h3>Coupon Code</h3>
-    					<p>Enter your coupon code if you have one</p>
-  						<form action="#" class="info">
-	              <div class="form-group">
-	              	<label for="">Coupon code</label>
-	                <input type="text" class="form-control text-left px-3" placeholder="">
-	              </div>
-	            </form>
-    				</div>
-    				<p><a href="checkout.html" class="btn btn-primary py-3 px-4">Apply Coupon</a></p>
-    			</div>
-    			<div class="col-lg-4 mt-5 cart-wrap ftco-animate">
-    				<div class="cart-total mb-3">
-    					<h3>Estimate shipping and tax</h3>
-    					<p>Enter your destination to get a shipping estimate</p>
-  						<form action="#" class="info">
-	              <div class="form-group">
-	              	<label for="">Country</label>
-	                <input type="text" class="form-control text-left px-3" placeholder="">
-	              </div>
-	              <div class="form-group">
-	              	<label for="country">State/Province</label>
-	                <input type="text" class="form-control text-left px-3" placeholder="">
-	              </div>
-	              <div class="form-group">
-	              	<label for="country">Zip/Postal Code</label>
-	                <input type="text" class="form-control text-left px-3" placeholder="">
-	              </div>
-	            </form>
-    				</div>
-    				<p><a href="checkout.html" class="btn btn-primary py-3 px-4">Estimate</a></p>
-    			</div>
-    			<div class="col-lg-4 mt-5 cart-wrap ftco-animate">
-    				<div class="cart-total mb-3">
-    					<h3>Cart Totals</h3>
+    					<h3>장바구니 금액</h3>
     					<p class="d-flex">
-    						<span>Subtotal</span>
-    						<span>$20.60</span>
+    						<span>상품가격</span>
+    						<span id="cart-product-price"></span>
     					</p>
     					<p class="d-flex">
-    						<span>Delivery</span>
-    						<span>$0.00</span>
-    					</p>
-    					<p class="d-flex">
-    						<span>Discount</span>
-    						<span>$3.00</span>
+    						<span>배송비</span>
+    						<span id="cart-product-delivery"></span>
     					</p>
     					<hr>
     					<p class="d-flex total-price">
-    						<span>Total</span>
-    						<span>$17.60</span>
+    						<span>합계</span>
+    						<span id="cart-product-price-total"></span>
     					</p>
     				</div>
-    				<p><a href="checkout.html" class="btn btn-primary py-3 px-4">Proceed to Checkout</a></p>
+    				<p><a href="/checkout" class="btn btn-primary py-3 px-4" style=" display : block;">결제</a></p>
     			</div>
     		</div>
-			</div>
 		</section>
 
-		<section class="ftco-section ftco-no-pt ftco-no-pb py-5 bg-light">
-      <div class="container py-4">
-        <div class="row d-flex justify-content-center py-5">
-          <div class="col-md-6">
-          	<h2 style="font-size: 22px;" class="mb-0">Subcribe to our Newsletter</h2>
-          	<span>Get e-mail updates about our latest shops and special offers</span>
-          </div>
-          <div class="col-md-6 d-flex align-items-center">
-            <form action="#" class="subscribe-form">
-              <div class="form-group d-flex">
-                <input type="text" class="form-control" placeholder="Enter email address">
-                <input type="submit" value="Subscribe" class="submit px-3">
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
+	
  
 <%@include file="./includes/footer.jsp" %>
 
-  <script>
-		$(document).ready(function(){
+<script>
+	$(document).ready(function() {
+		
+		var csrfHeaderName = "${_csrf.headerName}";
+		var csrfTokenValue = "${_csrf.token}";
 
-		var quantitiy=0;
-		   $('.quantity-right-plus').click(function(e){
-		        
-		        // Stop acting like a button
-		        e.preventDefault();
-		        // Get the field name
-		        var quantity = parseInt($('#quantity').val());
-		        
-		        // If is not undefined
-		            
-		            $('#quantity').val(quantity + 1);
-
-		          
-		            // Increment
-		        
-		    });
-
-		     $('.quantity-left-minus').click(function(e){
-		        // Stop acting like a button
-		        e.preventDefault();
-		        // Get the field name
-		        var quantity = parseInt($('#quantity').val());
-		        
-		        // If is not undefined
-		      
-		            // Increment
-		            if(quantity>0){
-		            $('#quantity').val(quantity - 1);
-		            }
-		    });
-		    
+		$(document).ajaxSend(function(e, xhr, option) {
+			xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
 		});
-	</script>
+
+		
+
+	});
+</script>
+
+<script>
+
+	
+	
+    $(document).ready(function(){
+    	(function(){
+    		//장바구니목록, 상품정보, 상품 메인사진 경로 가져오기
+    		$.getJSON("/getCartList",function(arr){
+    			
+    			var cart_content = "";
+    			var cart_product_price = 0 ;
+    			var cart_product_delivery = 0 ;
+    			var cart_product_price_total = 0;
+    			$(arr).each(function(i, cart){
+    				
+    				/* var fileCallPath = encodeURIComponent(cart.product.uploadPath+ "/" + Attach.uuid +"_" +
+	     					Attach.fileName); */
+   					var fileCallPath = encodeURIComponent(cart.product.attachList[0].uploadPath+ "/" + cart.product.attachList[0].uuid +"_" +
+   							cart.product.attachList[0].fileName); 
+    				
+	     		
+    				cart_content += "<tr class='text-center'>";
+    				cart_content += "<input type='hidden' value='"+cart.cno+"' class='btn-cart-delete'>";
+    				cart_content += "<td class='product-remove'><span class='ion-ios-close'></span></a></td>";
+    				cart_content += "<td class='image-prod'><div class='img' style='background-image:url(display?fileName="+fileCallPath+");'></div></td>";
+    				cart_content += " <td class='product-name'>";
+    				cart_content += " <h3>"+cart.product.ptitle+"</h3>";
+    				cart_content += "<p>"+cart.product.pcontent+"</p>";
+    				cart_content += "</td><td class='price'>"+cart.product.pprice+"</td>";
+    				cart_content += " <td class='quantity'>";
+    				cart_content += "<div class='input-group mb-3'>";
+    				cart_content += " <input type='text' name='quantity' class='quantity form-control input-number' value='"+cart.amount+"' min='1' max='100'>";
+    				cart_content += "</div></td> <td class='total'>"+(cart.product.pprice)*(cart.amount)+"원</td></tr>";
+    				cart_content += " <td class='quantity'>";
+    				cart_product_price +=(cart.product.pprice)*(cart.amount);
+    			});
+    			if(cart_content != ""){$(".tbody-group").html(cart_content);} // 장바구니 정보 입력 
+    			
+    			if(cart_product_price >= 30000){
+ 
+    			}else{
+    				cart_product_delivery = 2500;
+    			}
+    			cart_product_price_total += (cart_product_price + cart_product_delivery); //택배비와 상품총합을 더한가격
+    			cart_product_price_total += "원";
+    			$("#cart-product-price-total").html(cart_product_price_total);
+    			
+    			cart_product_delivery += "원";
+    			$("#cart-product-delivery").html(cart_product_delivery); // 구매가격이3만원이상인경우 배송비없음
+    			
+    			cart_product_price +="원";
+    			$("#cart-product-price").html(cart_product_price); // 장바구니내 상품가격의 합
+    			
+    			
+    		});
+    	})();
+    });
+    
+  //지우기 버튼 클릭시 장바구니 목록 삭제
+    $(document).on('click','.product-remove', function(){ 
+	   	
+    	var cno = ($(this).prev('.btn-cart-delete')).val(); //해당 게시물 cno가져오기
+    	
+	
+		console.log(cno);
+	 	var form={cno : cno};
+		
+		
+		$(function() {
+		    $.ajax({
+		        url: '/cart_delete',
+		        data: form,
+		        type: "POST",
+		        error : function(error) {
+		            alert("Error!");
+		        },
+		        success: function () {
+		          
+		           (function(){
+		       		//장바구니목록, 상품정보, 상품 메인사진 경로 가져오기
+		       		$.getJSON("/getCartList",function(arr){
+		       			
+		       			var cart_content = "";
+		       			var cart_product_price = 0 ;
+		       			var cart_product_delivery = 0 ;
+		       			var cart_product_price_total = 0;
+		       			$(arr).each(function(i, cart){
+		       				
+		       				/* var fileCallPath = encodeURIComponent(cart.product.uploadPath+ "/" + Attach.uuid +"_" +
+		   	     					Attach.fileName); */
+		      					var fileCallPath = encodeURIComponent(cart.product.attachList[0].uploadPath+ "/" + cart.product.attachList[0].uuid +"_" +
+		      							cart.product.attachList[0].fileName); 
+		       				
+		   	     		
+		       				cart_content += "<tr class='text-center'>";
+		       				cart_content += "<input type='hidden' value='"+cart.cno+"' class='btn-cart-delete'>";
+		       				cart_content += "<td class='product-remove'><span class='ion-ios-close'></span></a></td>";
+		       				cart_content += "<td class='image-prod'><div class='img' style='background-image:url(display?fileName="+fileCallPath+");'></div></td>";
+		       				cart_content += " <td class='product-name'>";
+		       				cart_content += " <h3>"+cart.product.ptitle+"</h3>";
+		       				cart_content += "<p>"+cart.product.pcontent+"</p>";
+		       				cart_content += "</td><td class='price'>"+cart.product.pprice+"</td>";
+		       				cart_content += " <td class='quantity'>";
+		       				cart_content += "<div class='input-group mb-3'>";
+		       				cart_content += " <input type='text' name='quantity' class='quantity form-control input-number' value='"+cart.amount+"' min='1' max='100'>";
+		       				cart_content += "</div></td> <td class='total'>"+(cart.product.pprice)*(cart.amount)+"원</td></tr>";
+		       				cart_content += " <td class='quantity'>";
+		       				cart_product_price +=(cart.product.pprice)*(cart.amount);
+		       			});
+		       			if(cart_content != ""){$(".tbody-group").html(cart_content);} // 장바구니 정보 입력 
+		       			
+		       			if(cart_product_price >= 30000){
+		    
+		       			}else{
+		       				cart_product_delivery = 2500;
+		       			}
+		       			cart_product_price_total += (cart_product_price + cart_product_delivery); //택배비와 상품총합을 더한가격
+		       			cart_product_price_total += "원";
+		       			$("#cart-product-price-total").html(cart_product_price_total);
+		       			
+		       			cart_product_delivery += "원";
+		       			$("#cart-product-delivery").html(cart_product_delivery); // 구매가격이3만원이상인경우 배송비없음
+		       			
+		       			cart_product_price +="원";
+		       			$("#cart-product-price").html(cart_product_price); // 장바구니내 상품가격의 합
+		       		});
+		       	})();
+		           alert("성공하였습니다.");
+		        }
+		    });
+		});
+    });
+</script>  
+
     </body>
    </html>

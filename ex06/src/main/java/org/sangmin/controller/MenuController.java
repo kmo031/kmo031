@@ -1,14 +1,35 @@
 package org.sangmin.controller;
 
+import java.security.Principal;
+
+import org.sangmin.domain.Criteria;
+import org.sangmin.domain.PageDTO;
+import org.sangmin.service.MemberService;
+import org.sangmin.service.ProductService;
+import org.sangmin.service.TradeService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import lombok.Setter;
 import lombok.extern.log4j.Log4j;
+
+
 
 @Log4j
 @Controller
 public class MenuController {
+	
+	@Setter(onMethod_ = @Autowired)
+	private ProductService service;
+	
+	@Setter(onMethod_ = @Autowired)
+	private MemberService memberService;
+	
+	@Setter(onMethod_ = @Autowired)
+	private TradeService tradeService;
 	
 	@GetMapping("/about")
 	public String about() {
@@ -26,16 +47,20 @@ public class MenuController {
 		return "/blog";
 	}
 	@GetMapping("/cart")
+	@PreAuthorize("isAuthenticated()")
 	public String cart() {
-		log.info("진입");
+		log.info("cart진입");
 		return "cart";
 	}
 	@GetMapping("/checkout")
-	public String checkout() {
+	@PreAuthorize("isAuthenticated()")
+	public String checkout(Principal principal,Model model) {
+		String userid = principal.getName();
+		model.addAttribute("member", memberService.get(userid));
 		log.info("진입");
 		return "checkout";
 	}
-	@GetMapping("/contact")
+	@GetMapping("/login")
 	public void contact(String error, String logout, Model model) {
 		log.info("error: " + error);
 		log.info("logout: " + logout);
@@ -48,25 +73,44 @@ public class MenuController {
 			model.addAttribute("logout", "Logout!!");
 		}
 	}
-	@GetMapping("/product_single")
-	public String product_single() {
-		log.info("진입");
-		return "product_single";
-	}
+	
 	@GetMapping("/shop")
-	public String shop() {
-		log.info("진입");
+	public String shop(Criteria cri, Model model) {
+		log.info("shop진입");
+		
+		int total = service.getTotal(cri);
+		
+		model.addAttribute("pageMaker", new PageDTO(cri, total));
 		return "shop";
 	}
-	@GetMapping("/wishlist")
-	public String wishlist() {
-		log.info("진입");
-		return "wishlist";
+	//유저정보보기
+	@GetMapping("/mamberstatus")
+	@PreAuthorize("isAuthenticated()")
+	public String mamberStatus(Principal principal,Model model) {
+		String userid = principal.getName();
+		model.addAttribute("member", memberService.get(userid));
+		log.info("shop진입");
+		return "/memberstatus";
 	}
 	@GetMapping("/join")
 	public String join() {
 		log.info("진입");
 		return "join";
+	}
+	
+	@GetMapping("/trademanager")
+	public String trademanager() {
+		log.info("관리자 진입");
+		return "/trade_manager";
+	}
+	
+	@GetMapping("/tradelist")
+	@PreAuthorize("isAuthenticated()")
+	public String tradList(Model model) {
+		
+		model.addAttribute("trade", tradeService.readTrade());
+		log.info("거래목록진입");
+		return "/tradelist";
 	}
 	
 	

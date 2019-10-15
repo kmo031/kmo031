@@ -25,6 +25,11 @@
 	
 	<context:component-scan base-package="org.sangmin.controller" />
 	
+	<beans:bean id="multipartResolver" 
+		class="org.springframework.web.multipart.support.StandardServletMultipartResolver">
+	</beans:bean>
+	
+	
 	<security:global-method-security pre-post-annotations="enabled" secured-annotations="enabled"/>
 	
 	

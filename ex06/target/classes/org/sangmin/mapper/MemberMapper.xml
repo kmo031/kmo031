@@ -10,6 +10,10 @@
     <result property="userId" column="userid"/>
     <result property="userPw" column="userpw"/>
     <result property="userName" column="username"/>
+    <result property="userTelnum" column="usertelnum"/>
+    <result property="userGender" column="usergender"/>
+    <result property="userBirthday" column="userbirthday"/>
+     <result property="userAddress" column="useraddress"/>
     <result property="regDate" column="regdate"/>
     <result property="updateDate" column="updatedate"/>
     <collection property="authList" resultMap="authMap">
@@ -23,7 +27,7 @@
   
   <select id="read" resultMap="memberMap">
 SELECT 
-  mem.userid,  userpw, username, enabled, regdate, updatedate, auth
+  mem.userid,  userpw, username,usertelnum,usergender,userbirthday,useraddress,enabled, regdate, updatedate, auth
 FROM 
   tbl_member3 mem LEFT OUTER JOIN tbl_member3_auth auth on mem.userid = auth.userid 
 WHERE mem.userid = #{userId} 
@@ -40,8 +44,12 @@ WHERE mem.userid = #{userId}
   
   <insert id="insertAuth">
   	INSERT INTO
-  		tbl_member3_auth(userid, auth) values (#{userId}, 'ROLE MEMBER')
+  		tbl_member3_auth(userid, auth) values (#{userid}, 'ROLE_MEMBER')
   		
   </insert>
+  
+  <select id="idCheck" resultType="int">
+  		select count(*) from tbl_member3 where userid = #{userId}
+  </select>
 
 </mapper>

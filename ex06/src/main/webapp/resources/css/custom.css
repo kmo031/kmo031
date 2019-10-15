@@ -26,6 +26,87 @@
 		font-size: 25px;
 	}
 	
-	#btn-Select2{
+	#btn-padd{
 		width:40%;
 	}
+	
+/* 메인파일업로드 css  */
+.uploadResult {
+	width: 100%;
+	background-color: white;
+}
+
+.uploadResult ul {
+	display: flex;
+	flex-flow: row;
+	justify-content: center;
+	align-items: center;
+}
+
+.uploadResult ul li {
+	list-style: none;
+	padding: 10px;
+	align-content: center;
+	text-align: center;
+}
+
+.uploadResult ul li img {
+	width: 100px;
+}
+.uploadResult ul li span{
+	color:white;
+}
+
+/* 서브파일업로드 css  */
+.uploadResult2 {
+	width: 100%;
+	background-color: white;
+}
+
+.uploadResult2 ul {
+	display: flex;
+	flex-flow: row;
+	justify-content: center;
+	align-items: center;
+}
+
+.uploadResult2 ul li {
+	list-style: none;
+	padding: 10px;
+	align-content: center;
+	text-align: center;
+}
+
+.uploadResult2 ul li img {
+	width: 100px;
+}
+.uploadResult2 ul li span{
+	color:white;
+}
+
+
+
+.bigPictureWrapper {
+  position: absolute;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  top:0%;
+  width:100%;
+  height:100%;
+  background-color: white; 
+  z-index: 100;
+  bgckground:rgba(255,255,255,0,5);
+}
+
+.bigPicture {
+  position: relative;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bigPiture img{
+	width : 600px;
+}
+/* /파일업로드 CSS  */

@@ -16,7 +16,6 @@
 					id="unick" class="form-control" placeholder="이름을 입력하여주세요"
 					name="userName" required autofocus>
 			</p>
-
 			<p>
 				<label for="uid" class="sr-only">아이디</label> <input type="text"
 					id="uid"class="form-control" placeholder="아이디를 입력하여주세요"
@@ -30,11 +29,11 @@
 			<p>
 				<label for="upwre" class="sr-only">비밀번호확인</label> <input
 					type="password" id="upwre" class="form-control"
-					placeholder="비밀번호확인" name="passwordre" required>
+					placeholder="비밀번호확인" name="userPwRe" required>
 			</p>
 			<p>
 				<label for="utelnum" class="sr-only">전화번호</label> <input type="text"
-					id="utelnum" class="form-control" placeholder="-를빼고 입력하여주세요"
+					id="utelnum" class="form-control" placeholder="전화번호를 -를빼고 입력하여주세요"
 					name="userTelnum" required>
 			</p>
 			<p>
@@ -50,19 +49,17 @@
 
 			<div class="radio">
 				<p>
-					<label for="gender">성별</label> <label for="men">남</label> <input
-						type="radio" id="men" name="usergender" required> <label
-						for="girl">여</label> <input type="radio" id="girl" name="usergender"
+					<label>성별</label> <label for="men">남</label> <input
+						type="radio" value="0" checked  name="userGender" required> <label
+						for="girl">여</label> <input type="radio" value="1" name="userGender"
 						required>
 				</p>
 			</div>
 
 			  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 			<div></div>
-			<button id="btn-Select2" class="btn btn-sm btn-primary btn-block"
+			<button id="btn-joinAdd" class="btn btn-sm btn-primary btn-block"
 				type="submit">회원가입</button>
-			<button type="reset" id="btn-Select2" class="btn btn-sm btn-primary btn-block"
-				type="submit">다시쓰기</button>
 			
 		</form>
 		
@@ -72,6 +69,64 @@
 </div>
 
 <%@include file="./includes/footer.jsp"%>
+
+
+
+
+<script>
+
+	
+	$(document).ready(function() {
+	
+		$(document).ajaxSend(function(e, xhr, option) {
+			xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+		});
+	
+		var csrfHeaderName = "${_csrf.headerName}";
+		var csrfTokenValue = "${_csrf.token}";
+	
+	});
+
+	//id 중복체크
+	$("#uid").blur(function(){
+		var user_id = $("#uid").val();
+		if(user_id != ""){
+		 	$.ajax({
+				url : '/user/idCheck?userId='+user_id,
+				type : 'get',
+				dataType : "json",
+				
+				success : function(data) {
+					if(data == 1){
+						 $("#uid").attr('style', 'background-color : #f90707e3 !important');
+						 $("#uid").val("");
+						 alert("이미 존재하는 아이디 입니다.");
+					}else{
+						 $("#uid").attr('style', 'background-color :#82ae46 !important');
+					}
+				}
+			}); //ajax end */
+		}
+	});
+	//password 확인
+	$("#upwre").blur(function(){
+		var user_pw = $("#upw").val();
+		var user_pwre = $("#upwre").val();
+		if(user_pwre != ""){
+			if(user_pw == user_pwre){
+				$("#upw").attr('style', 'background-color :#82ae46 !important');
+				$("#upwre").attr('style', 'background-color :#82ae46 !important');
+			}else{
+				$("#upw").attr('style', 'background-color :#f90707e3 !important');
+				$("#upwre").attr('style', 'background-color :#f90707e3 !important');
+				$("#upw").val("");
+				$("#upwre").val("");
+				alert("비밀번호가 일치하지 않습니다.")
+			}
+		}
+	});
+
+</script>
 
 </body>
 </html>
