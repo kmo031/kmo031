@@ -26,7 +26,7 @@ public class UserRegController {
 		member.setUserPw(passwordEncoder.encode(member.getUserPw()));
 		log.info("register: " + member);
 		 service.register(member); 
-		return "index";
+		return "/index";
 	}
 	
 	
@@ -36,5 +36,11 @@ public class UserRegController {
 		
 		return service.idCheck(user_id);
 		
+	}
+	
+	@PostMapping("/member_status_modify")
+	public String modify(MemberVO member) {
+		service.modify(member);
+		return "/index";
 	}
 }

@@ -11,8 +11,8 @@
 	          <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
 
 	            <div class="col-md-12 ftco-animate text-center">
-	              <h1 class="mb-2">시작이 어려울뿐 하는건 더어렵다</h1>
-	              <h2 class="subheading mb-4">그래도 힘내자</h2>
+	              <h1 class="mb-2">쇼핑몰 포트폴리오</h1>
+	              <h2 class="subheading mb-4">쇼핑몰 포트폴리오</h2>
 	            </div>
 
 	          </div>
@@ -25,8 +25,8 @@
 	          <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
 
 	            <div class="col-sm-12 ftco-animate text-center">
-	              <h1 class="mb-2">쇼핑몰 도전기</h1>
-	              <h2 class="subheading mb-4">할수 있는것이다 도전해보자</h2>
+	              <h1 class="mb-2">새롭게</h1>
+	              <h2 class="subheading mb-4">도전</h2>
 	            </div>
 
 	          </div>

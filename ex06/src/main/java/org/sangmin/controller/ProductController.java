@@ -83,7 +83,6 @@ public class ProductController {
 		@ResponseBody
 		public ResponseEntity<List<CartDTO>> getCartList(Principal principal){
 			String userid = principal.getName();
-			log.info("몇개니"+service.getCartList(userid));
 			return new ResponseEntity<>(service.getCartList(userid),HttpStatus.OK);
 		}
 	
@@ -121,10 +120,8 @@ public class ProductController {
 		cart.setUserid(userid);
 		
 		if(service.getCart(cart)==null) {
-			log.info("입력부분진입");
 		service.registerCart(cart);
 		}else {
-			log.info("안진입");
 			service.modifyCart(cart);
 		}
 		

@@ -39,4 +39,11 @@ public class MemberServiceImpl implements MemberService {
 		return mapper.idCheck(user_id);
 	}
 
+	@Override
+	public void modify(MemberVO member) {
+		log.info("사용자 정보 변경");
+		mapper.memberModify(member);
+		
+	}
+
 }

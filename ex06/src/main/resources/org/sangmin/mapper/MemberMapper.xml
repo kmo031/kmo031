@@ -29,14 +29,14 @@
 SELECT 
   mem.userid,  userpw, username,usertelnum,usergender,userbirthday,useraddress,enabled, regdate, updatedate, auth
 FROM 
-  tbl_member3 mem LEFT OUTER JOIN tbl_member3_auth auth on mem.userid = auth.userid 
+  tbl_member mem LEFT OUTER JOIN tbl_member_auth auth on mem.userid = auth.userid 
 WHERE mem.userid = #{userId} 
   </select>
   
    <insert id="insert">
   	
   	INSERT INTO
-  	 tbl_member3(
+  	 tbl_member(
   	 	userid, userpw, username, usergender, usertelnum, userbirthday,useraddress)
   		values (#{userId},#{userPw},#{userName}, #{userGender},#{userTelnum},#{userBirthday},#{userAddress})
   
@@ -44,12 +44,19 @@ WHERE mem.userid = #{userId}
   
   <insert id="insertAuth">
   	INSERT INTO
-  		tbl_member3_auth(userid, auth) values (#{userid}, 'ROLE_MEMBER')
+  		tbl_member_auth(userid, auth) values (#{userid}, 'ROLE_MEMBER')
   		
   </insert>
   
   <select id="idCheck" resultType="int">
-  		select count(*) from tbl_member3 where userid = #{userId}
+  		select count(*) from tbl_member where userid = #{userId}
   </select>
+  
+  <update id="memberModify">
+  	update tbl_member
+		set usertelnum= #{userTelnum},
+		useraddress=#{userAddress}
+		where userid = #{userId}
+  </update>
 
 </mapper>

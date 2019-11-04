@@ -9,5 +9,7 @@ public interface MemberService {
 	public void register(MemberVO member);
 	
 	public int idCheck(String user_id);
+	
+	public void modify(MemberVO member);
 
 }
